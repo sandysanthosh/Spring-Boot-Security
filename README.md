@@ -24,3 +24,16 @@ Spring boot security
 #### Secured Item:
 
 - Resource that is being Secured
+
+
+#### Authentication:
+
+There are many authentication mechanisms:
+
+- Example:Basic, Digest, Form, X.509, OAuth
+
+There are many storage options for credential and authority information:
+
+- Example: in-memory(development), Databases, LDAP.
+
+
