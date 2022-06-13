@@ -1,77 +1,42 @@
-## Spring-Boot-Security
+#### pom.xml:
 
 
-### Security:
+https://docs.spring.io/spring-security/site/docs/5.0.x/reference/html/csrf.html
 
-        * Principal:
+```
 
-        - User, Device or system that perform an action
-
-        * Authentication:
-
-        - Establising that a principal credentials are valid
-
-        * Authorization:
-
-        -  Decidicing if principal is allowed to Perform an
-
-        * Authority;
-
-        - Permission or credential enabling access(such as role)
-
-        * Secured Item:
-
-        - Resource that is being Secured
+<dependencies>
+        <dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-config</artifactId>
+    <version>5.5.0</version>
+  </dependency>
+        <dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-web</artifactId>
+    <version>5.5.0</version>
+  </dependency>
+</dependencies>
 
 
-#### Authentication:
+```
 
-       There are many authentication mechanisms:
+### security.java:
 
-       - Example:Basic, Digest, Form, X.509, OAuth
-
-       There are many storage options for credential and authority information:
-
-       - Example: in-memory(development), Databases, LDAP.
-
-#### Authorization:
-
-     Authorization depends on authentication
-
-     - Before deciding if a user can perform an action, user identify must be established
-
-       Authorization determines if you have the required Authoritu
-
-       The decision process if often baed on roles:  
-
-         * Admin can cancel orders
-
-         * Member can place orders
-
-         * Guest can browse the catalog
+```
 
 
-#### Spring Security Project:  
+@EnableWebSecurity
+public class WebSecurityConfig extends
+		WebSecurityConfigurerAdapter {
 
-#### Portable:
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http
+			.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                     .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+	}
+}
 
-       Secured archive(JAR,EAR,WAR) cam ne deployed as
 
-#### Seperation of Concerns:
-
-        Business logic is decoupled from security Concerns
-
-        Authentication and Authorization are decoupled  ->  Changes to authentication have no impact on authorizations
-               
-  #### Flexible & Extensible:
-  
-      - Authentication ::Basic, Digest, Form, X.509, OAuth, Cookies, single-sign-On..
-
-      - Storage: in-memory(development), Databases, LDAP, RDMS, properties file, custom DAOS..
-
-      - Highly customizable
-       
-       
-  
-  
-  
+```
