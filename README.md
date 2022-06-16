@@ -25,16 +25,36 @@ https://docs.spring.io/spring-security/site/docs/5.0.x/reference/html/csrf.html
 
 ```
 
-
+@Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
+
 public class WebSecurityConfig extends
 		WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+		    .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
                      .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+		    
+		    
+		http.crsf().
+		.disable()
+		.exceptionHandling()
+		.authennticationEntryPoint(404); // check online
+		.and()
+		.authorizeRequests()
+		.antMatchers("/")
+		.permitAll()
+		.and()
+		.addFilterBefore(buildAdminJwtTokenAuthenticationProcessingFilter(),
+		UsernamePassowrdAuthenticationFilter.class);
+		
+		https.headers().cacheControl();
+		}
+		
+		
 	}
 }
 
