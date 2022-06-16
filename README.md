@@ -30,21 +30,23 @@ public class springsecurity extends WebSecurityConfigureAdapter{
 @Override
 protected void configure(AuthenticationManagerBuilder auth) throws exception {
 
-auth.inMemoryAuthentication().withUsers("Java Techie").password("password").roles("ADMIN");
+auth.inMemoryAuthentication().withUser("Java Techie").password("Password").roles("ADMIN");
+auth.inMemoryAuthentication().withUser("Basant").password("Password2").roles("USER");
+
 }
 
 //Security for all API
 
 @Override
-protected void configure(HttpSecurity http) throws Exception {
+	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-            http.authorizeRequests().anyRequest().fullyAuthenticated().and().httpBasic();
-
-}
-
-Public static NoOpPasswordEncoder passwordEncoder(){
-return (NoOpPasswodEncoder) NoOpPassordEncoder.getInstance();
-}
+		http.authorizeRequests().antMatchers("/rest/**").hasAnyRole("ADMIN").anyRequest().fullyAuthenticated().and()
+				.httpBasic();
+	}
+@Bean
+	public static NoOpPasswordEncoder passwordEncoder() {
+		return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+	}
 }
     
     
