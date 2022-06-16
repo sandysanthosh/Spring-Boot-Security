@@ -2,6 +2,13 @@
 
 Spring Security : Basic Authentication and Authorization  using spring boot
 
+Dependency:
+
+```
+DevTools
+Secutiry 
+Web
+```
 
 ```
 
