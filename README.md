@@ -18,8 +18,39 @@ https://docs.spring.io/spring-security/site/docs/5.0.x/reference/html/csrf.html
   </dependency>
 </dependencies>
 
+```
+
+### WebSecurity.java:
 
 ```
+@SuppressWarnings("deprecation")
+@configuration
+public class springsecurity extends WebSecurityConfigureAdapter{
+
+@Override
+protected void configure(AuthenticationManagerBuilder auth) throws exception {
+
+auth.inMemoryAuthentication().withUsers("Java Techie").password("password").roles("ADMIN");
+}
+
+//Security for all API
+
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable();
+            http.authorizeRequests().anyRequest().fullyAuthenticated().and().httpBasic();
+
+}
+
+Public static NoOpPasswordEncoder passwordEncoder(){
+return (NoOpPasswodEncoder) NoOpPassordEncoder.getInstance();
+}
+}
+    
+    
+    ```
+
+
 
 ### security.java:
 
