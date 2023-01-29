@@ -14,6 +14,8 @@ Secutiry
 Web
 ```
 
+### Example:
+
 ```
 
 @SuppressWarnings("deprecation")
@@ -42,16 +44,15 @@ auth.inMemoryAuthentication().withUser("Basant").password("Password2").roles("US
 	}
 }
     
+```    
     
-    
-    
-    ```
+   
     
     
    #### custom filter that checks if a user is authenticated and has the necessary role to access a certain resourc:
    
    
-   ```
+```   
    
    import java.io.IOException;
 import javax.servlet.FilterChain;
@@ -80,10 +81,12 @@ public class AuthenticationFilter extends GenericFilterBean {
 ```
 
 
+
 This filter uses the **TokenAuthenticationService** to extract the authentication information from the request and sets it in the **SecurityContextHolder**. You can then configure your application to use this filter for specific URLs or request types.
 
 
 Here is an example of using the **@PreAuthorize** and **@PostAuthorize** annotations to check the authentication and authorization of a user before or after a method is called:
+
 
 ```
 @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -97,6 +100,7 @@ public void getResource() {
 This code checks if the user has the role of ROLE_ADMIN before the method is executed and if the user has the role of ROLE_USER after the method is executed.
 
 In addition to this you can also use following code to check authentication
+
 
 ```
 @RequestMapping("/user")
