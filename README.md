@@ -3,7 +3,7 @@
 Spring Security : Basic Authentication and Authorization  using spring boot
 
 
-In a Spring Boot application, you can double check that a user is authenticated by using Spring Security. One way to do this is to create a custom filter that checks if the user is authenticated and has the necessary roles or permissions to access a certain resource. You can then configure your application to use this filter for specific URLs or request types. Additionally, you can use the SecurityContextHolder to check if the current user is authenticated and has the necessary roles or authorities. You can also use the @PreAuthorize and @PostAuthorize annotations to check the authentication and authorization of a user before or after a method is called.
+In a Spring Boot application, you can double check that a user is authenticated by using Spring Security. One way to do this is to create a custom filter that checks if the user is authenticated and has the necessary roles or permissions to access a certain resource. You can then configure your application to use this filter for specific URLs or request types. Additionally, you can use the **SecurityContextHolder** to check if the current user is authenticated and has the necessary roles or authorities. You can also use the **@PreAuthorize** and **@PostAuthorize** annotations to check the authentication and authorization of a user before or after a method is called.
 
 
 Dependency:
